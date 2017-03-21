@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        changePage(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     @Override
@@ -82,9 +85,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Fragment fragment = null;
-
         int id = item.getItemId();
+        changePage(id);
+        return true;
+    }
+
+    private void changePage(int id) {
+        Fragment fragment = null;
 
         if (id == R.id.nav_home) {
             fragment = new HomeFragment();
@@ -108,6 +115,6 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+
     }
 }
